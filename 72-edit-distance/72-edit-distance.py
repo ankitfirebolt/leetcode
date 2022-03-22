@@ -26,7 +26,7 @@ class Solution(object):
             delete_path = 1 + self.minDistance(word1[1:], word2, memo)
             
             #replace
-            replace_path = 1 + self.minDistance(word1[1:], word2[1:])
+            replace_path = 1 + self.minDistance(word1[1:], word2[1:], memo)
             
             memo[(word1, word2)] = min(insert_path, delete_path, replace_path)
             return memo[(word1, word2)]

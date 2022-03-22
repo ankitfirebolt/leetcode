@@ -18,11 +18,10 @@ class Solution(object):
 
         for i in range(1, m+1):
             for j in range(1, n+1):
-                min_strategy = min(dp_matrix[i-1][j], dp_matrix[i-1][j-1], dp_matrix[i][j-1])
                 if word1[i-1] == word2[j-1]: #because i-1 and j-1 are the index of the characters
-                    dp_matrix[i][j] = dp_matrix[i-1][j-1]
+                    dp_matrix[i][j] = dp_matrix[i-1][j-1] # nothing to do
                 else:
-                    dp_matrix[i][j] = 1 + min_strategy
+                    dp_matrix[i][j] = 1 + min(dp_matrix[i-1][j], dp_matrix[i-1][j-1], dp_matrix[i][j-1])
         return dp_matrix[m][n]
     
     def minDistance_Recursion_Memoization(self, word1, word2, memo = {}):

@@ -5,16 +5,12 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-        total = len(nums1)+len(nums2)
+        concat_nums = nums1 + nums2
         
-        i, j = None, None
-        if total%2 == 0:
-            i = total/2
-            j = i+1
-            l = heapq.nsmallest(j, nums1+nums2)
-            return (l[-1]+l[-2])/2.0 #mean of mid and mid+1 elements
+        mid = len(concat_nums)/2
+        heap_top_k = heapq.nsmallest(mid+1, concat_nums)
+        
+        if len(concat_nums)%2 == 0:
+            return (heap_top_k[-1]+heap_top_k[-2])/2.0 #mean of mid and mid+1 elements
         else:
-            i = total/2
-            j = i+1
-            l = heapq.nsmallest(j, nums1+nums2)
-            return l[-1] #mid element
+            return heap_top_k[-1] #mid element

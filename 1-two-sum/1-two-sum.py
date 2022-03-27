@@ -5,12 +5,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        complement_dict = dict()
+        complements = {}
         
-        for i, n in enumerate(nums):
-            complement = target - n
-            
-            if complement in complement_dict:
-                return [complement_dict[complement], i]
+        for i,n in enumerate(nums):
+            if n not in complements:
+                complements[target-n] = i
             else:
-                complement_dict[n] = i
+                return [i, complements[n]]

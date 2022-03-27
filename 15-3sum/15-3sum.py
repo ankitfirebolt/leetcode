@@ -23,5 +23,5 @@ class Solution(object):
                     i+=1
                 else:
                     ans.add((n, nums[i], nums[j]))
-                    i+=1 #either change i or j
+                    i+=1 #either change i or j - because there could be multiple entries add to target
         return ans

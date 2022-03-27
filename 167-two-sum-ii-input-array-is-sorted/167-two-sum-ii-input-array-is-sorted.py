@@ -6,11 +6,12 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        mapping = {}
+        i, j = 0, len(numbers)-1
         
-        for i,n in enumerate(numbers):
-            
-            if n in mapping:
-                return [mapping[n]+1, i+1]
+        while(i!=j):
+            if numbers[i]+numbers[j] > target: #need to reduce sum
+                j-=1
+            elif numbers[i]+numbers[j] < target: #need to increase sum
+                i+=1
             else:
-                mapping[target-n] = i
+                return [i+1, j+1]

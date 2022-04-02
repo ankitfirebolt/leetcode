@@ -17,6 +17,7 @@ class Solution(object):
             else:
                 curr_water+= (curr_max-h)
         
+        #right->left pass upto index
         curr_water, curr_max = 0, height[-1]
         for h in height[index:][::-1]:
             if h>=curr_max:

@@ -14,7 +14,7 @@ class Twitter:
         feed = []
         for u in users_followed:
             feed += self.tweets[u]
-        return [x[1] for x in heapq.nlargest(10, feed, key = lambda k: k[0])]
+        return [y for (x,y) in heapq.nlargest(10, feed, key = lambda k: k[0])]
     
     def follow(self, followerId: int, followeeId: int) -> None:
         self.following[followerId].add(followeeId)        

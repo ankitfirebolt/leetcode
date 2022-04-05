@@ -13,14 +13,12 @@ class LRUCache:
             return -1
     
     def put(self, key: int, value: int) -> None:
-        if key in self.LRU or len(self.LRU) < self.capacity:
-            self.LRU[key] = value
-            self.LRU.move_to_end(key)
-        else:
+        
+        if key not in self.LRU and len(self.LRU) >= self.capacity:
             self.LRU.popitem(last=False)
-            self.LRU[key] = value
-            self.LRU.move_to_end(key)
-
+        
+        self.LRU[key] = value
+        self.LRU.move_to_end(key)
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)

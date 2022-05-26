@@ -9,8 +9,9 @@ class Solution:
                 left = mid+1
             elif nums[left] > nums[mid] and nums[mid] < nums[right]:
                 right = mid
-            else:
+            else: #if it comes here it means mid = left or right, i.e., only two elements left
                 break
+        
         return min(nums[left], nums[right])
         
         

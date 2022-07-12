@@ -3,18 +3,27 @@ class Solution:
         
         stack = []
         
+        mapping = {'(' : ')', '{' : '}', '[':']'}
+        
         for c in s:
-            if c == '(' or c=='{' or c=='[':
-                stack+=c
+            #case 1: encounter an opening bracket - we simply append and move on
+            if c in mapping:
+                stack.append(c)
                 continue
+                
+            #case 2: encounter a closing bracket
+            # need to check if the corresponding opening bracket is the last one and if it exists
             
-            if c == ')' and stack and stack[-1]=='(':
-                stack = stack[:-1]
-            elif c == ']' and stack and stack[-1]=='[':
-                stack = stack[:-1]
-            elif c=='}' and stack and stack[-1]=='{':
+            if stack and mapping[stack[-1]] == c:
                 stack = stack[:-1]
             else:
-                return False
-        
-        return not bool(stack)
+                return False #mismatch
+            
+        #case 3: avoid cases like '((((('
+        return not stack
+            
+            
+            
+            
+            
+            

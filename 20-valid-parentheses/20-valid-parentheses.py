@@ -1,18 +1,20 @@
-class Solution(object):
-    def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
         stack = []
-        mapping = {')': '(', '}':'{', ']': '['}
+        
         for c in s:
-            if c == '(' or c == '{' or c == '[':
-                stack.append(c)
-            elif stack and mapping[c] == stack[-1]:
-                stack.pop(-1)
+            if c == '(' or c=='{' or c=='[':
+                stack+=c
+                continue
+            
+            if c == ')' and stack and stack[-1]=='(':
+                stack = stack[:-1]
+            elif c == ']' and stack and stack[-1]=='[':
+                stack = stack[:-1]
+            elif c=='}' and stack and stack[-1]=='{':
+                stack = stack[:-1]
             else:
                 return False
-            
-        return not stack
-                
+        
+        return not bool(stack)

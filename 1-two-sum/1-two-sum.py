@@ -1,14 +1,9 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        complements = {}
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashdict = {}
         
         for i,n in enumerate(nums):
-            if n not in complements:
-                complements[target-n] = i
-            else:
-                return [i, complements[n]]
+            if target - n in hashdict:
+                return [i, hashdict[target-n]]
+            hashdict[n]=i
+            

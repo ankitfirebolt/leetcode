@@ -1,29 +1,20 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        
         stack = []
-        
-        mapping = {'(' : ')', '{' : '}', '[':']'}
+        starting_brackets = {'(', '{', '['}
+        ending_brackets = {')', '}', ']'}
+        mapping = {')':'(', '}':'{', ']':'['}
         
         for c in s:
-            #case 1: encounter an opening bracket - we simply append and move on
-            if c in mapping:
-                stack.append(c)
-                continue
-                
-            #case 2: encounter a closing bracket
-            # need to check if the corresponding opening bracket is the last one and if it exists
-            
-            if stack and mapping[stack[-1]] == c:
+            if c in starting_brackets:
+                stack += c
+            elif (c in ending_brackets and not stack) or (c in ending_brackets and mapping[c] != stack[-1]):
+                return False
+            elif (c in ending_brackets and mapping[c] == stack[-1]):
                 stack = stack[:-1]
-            else:
-                return False #mismatch
-            
-        #case 3: avoid cases like '((((('
-        return not stack
-            
-            
-            
-            
-            
-            
+        
+        if stack:
+            return False
+        else:
+            return True
+                

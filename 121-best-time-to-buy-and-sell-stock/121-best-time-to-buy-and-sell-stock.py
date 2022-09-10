@@ -1,13 +1,14 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
+        
         min_so_far = prices[0]
-        profit = 0
+        max_profit = 0
+        curr_profit = 0
         
         for p in prices:
-            if p - min_so_far > profit:
-                profit = p - min_so_far
-            
-            if p < min_so_far:
-                min_so_far = p
+            min_so_far = min(min_so_far, p)
+            curr_profit = p-min_so_far
+            if curr_profit > max_profit:
+                max_profit = curr_profit
                 
-        return profit
+        return max_profit

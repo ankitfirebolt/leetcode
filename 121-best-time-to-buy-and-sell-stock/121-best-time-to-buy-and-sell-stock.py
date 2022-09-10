@@ -8,7 +8,6 @@ class Solution:
         for p in prices:
             min_so_far = min(min_so_far, p)
             curr_profit = p-min_so_far
-            if curr_profit > max_profit:
-                max_profit = curr_profit
+            max_profit = max(curr_profit, max_profit)
                 
         return max_profit

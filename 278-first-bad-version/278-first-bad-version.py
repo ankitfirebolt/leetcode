@@ -6,17 +6,15 @@ class Solution:
         
         left, right = 1, n
         
-        while left <= right:
+        while left < right:
             mid = (left+right)//2
             
-            if left == right:
-                return mid
-            elif not isBadVersion(mid):
-                left = mid + 1
-            else:
+            if isBadVersion(mid):
                 right = mid
+            else:
+                left = mid + 1
         
-        return mid
+        return right
                     
             
             

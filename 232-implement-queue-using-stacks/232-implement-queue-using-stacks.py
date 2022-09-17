@@ -8,23 +8,26 @@ class MyQueue:
         self.stack_1.append(x)
 
     def pop(self) -> int:
+        if self.stack_2:
+            return self.stack_2.pop()
+        
+        #Else move all elements from stack_1 to stack_2 and then pop
         while self.stack_1:
             self.stack_2.append(self.stack_1.pop())
-        output = self.stack_2.pop()
-        while self.stack_2:
-            self.stack_1.append(self.stack_2.pop())
-        return output
+        return self.stack_2.pop()
+        
     
     def peek(self) -> int:
+        if self.stack_2:
+            return self.stack_2[-1]
+        
+        #Else move all elements from stack_1 to stack_2 and then pop
         while self.stack_1:
             self.stack_2.append(self.stack_1.pop())
-        output = self.stack_2[-1] #there's no top() func in python
-        while self.stack_2:
-            self.stack_1.append(self.stack_2.pop())
-        return output
+        return self.stack_2[-1]
 
     def empty(self) -> bool:
-        return not bool(self.stack_1)    
+        return not bool(self.stack_1) and not bool(self.stack_2)
 
 
 # Your MyQueue object will be instantiated and called as such:

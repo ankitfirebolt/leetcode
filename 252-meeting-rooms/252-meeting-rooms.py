@@ -8,5 +8,4 @@ class Solution:
         for k in sorted_intervals:
             new_list += k
             
-        print(new_list)
         return new_list == sorted(new_list)

@@ -17,6 +17,8 @@ class Solution:
                 return False
             elif p.val == q.val:
                 return is_mirror(p.left, q.right) and is_mirror(p.right, q.left)
+            else:
+                return False
             
         return is_mirror(root.left, root.right)
                 

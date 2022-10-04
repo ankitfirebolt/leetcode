@@ -1,18 +1,12 @@
-class Solution(object):
-    def isPalindrome(self, x):
-        """
-        :type x: int
-        :rtype: bool
-        """
-        x = str(x)
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
         
-        def helper(x):
-            if not x:
-                return True
-            
-            if x[0]!=x[-1]:
-                return False
-            else:
-                return helper(x[1:-1])
-            
-        return helper(x)
+        num = x
+        reverse_num = 0
+        
+        while x > 0:
+            reverse_num = 10*reverse_num + (x%10)
+            x = x//10
+        
+        return num == reverse_num
+        
